@@ -10,7 +10,7 @@ const Player: React.FC = (props) => {
   const { player } = router.query;
 
   const context = useMemo(
-    () => ({ variables: { PlayerID: player } }),
+    () => ({ variables: { PlayerID: player as string } }),
     [player]
   );
 
@@ -49,7 +49,7 @@ const Player: React.FC = (props) => {
           data?.legacyPlayerStats?.[0].Balance,
           data?.legacyPlayerStats?.[0].Acceleration,
         ].map(function (stat) {
-          return calculateStatForHexagon(stat);
+          return calculateStatForHexagon(stat as number);
         }),
         borderColor: ["rgb(253,182,180)"],
         borderWidth: 3,
