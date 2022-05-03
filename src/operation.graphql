@@ -1,0 +1,63 @@
+query LegacyPlayerStats($PlayerID: String!) {
+  legacyPlayerStats(PlayerID: $PlayerID) {
+    Name
+    Acceleration
+    Age
+    Agility
+    Attack
+    Balance
+    Defence
+    DribbleAccuracy
+    Foot
+    FootSide
+    Height
+    Image
+    InjuryTolerance
+    Nationality
+    PlayerID
+    Positions
+    RegistredPosition
+    Response
+    ShortPassSpeed
+    ShortPassAccuracy
+    Speed
+    Stamina
+    Weight
+    LongPassAccuracy
+    LongPassSpeed
+    ShotAccuracy
+    ShotPower
+    ShotTechnique
+    FreeKickAccuracy
+    Heading
+    Jump
+    Swerve
+    Technique
+    Aggression
+    Mentality
+    GKSkills
+    TeamWork
+    Consistency
+    ConditionFitness
+    WeakFootAccuracy
+    FreeKickStyle
+    DribbleSpeed
+    DribblingStyle
+    DropKickStyle
+    PenaltyStyle
+    WeakFootFrequency
+    SpecialAbilities
+  }
+}
+
+query SearchPlayer($PlayerName: String, $TeamName: String, $NationName: String, $PlayerID: String) {
+  searchPlayer(PlayerName: $PlayerName, TeamName: $TeamName, NationName: $NationName, PlayerID: $PlayerID) {
+    Name
+    Age
+    TeamName
+    Nation
+    Position
+    Image
+    PlayerID
+  }
+}

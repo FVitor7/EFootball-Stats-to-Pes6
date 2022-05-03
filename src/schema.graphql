@@ -1,0 +1,290 @@
+"""
+Direct the client to resolve this field locally, either from the cache or local resolvers.
+"""
+directive @client(
+  """
+  When true, the client will never use the cache for this value. See
+  https://www.apollographql.com/docs/react/essentials/local-state/#forcing-resolvers-with-clientalways-true
+  """
+  always: Boolean
+) on FIELD | FRAGMENT_DEFINITION | INLINE_FRAGMENT
+
+"""
+Export this locally resolved field as a variable to be used in the remainder of this query. See
+https://www.apollographql.com/docs/react/essentials/local-state/#using-client-fields-as-variables
+"""
+directive @export(
+  """The variable name to export this field as."""
+  as: String!
+) on FIELD
+
+"""
+Specify a custom store key for this result. See
+https://www.apollographql.com/docs/react/advanced/caching/#the-connection-directive
+"""
+directive @connection(
+  """Specify the store key."""
+  key: String!
+
+  """
+  An array of query argument names to include in the generated custom store key.
+  """
+  filter: [String!]
+) on FIELD
+
+type Query {
+  allPlayers(initPagination: Int = 0, endPagination: Int = 1): [Player!]!
+  searchPlayer(PlayerID: String = null, PlayerName: String = null, TeamName: String = null, NationName: String = null): [Player!]!
+  legacyPlayerStats(PlayerID: String = null): [LegacyPlayer!]!
+}
+
+type Player {
+  PlayerID: ID!
+  Image: String!
+  Name: String!
+  AccentedName: String!
+  JapName: String!
+  Shirt: String!
+  ShirtNational: String!
+  Commentary: String!
+  Country: String!
+  Country2: Int!
+  Height: String!
+  Weight: String!
+  Age: String!
+  StrongerFoot: String!
+  PlayingStyles: String!
+  RegisteredPosition: String!
+  GK: String!
+  CB: String!
+  LB: String!
+  RB: String!
+  RMF: String!
+  CMF: String!
+  LMF: String!
+  DMF: String!
+  AMF: String!
+  LWF: String!
+  RWF: String!
+  SS: String!
+  CF: String!
+  OffensiveAwareness: Int!
+  BallControl: Int!
+  Dribbling: Int!
+  TightPossession: Int!
+  LowPass: Int!
+  LoftedPass: Int!
+  Finishing: Int!
+  Heading: Int!
+  PlaceKicking: Int!
+  Curl: Int!
+  Speed: Int!
+  Acceleration: Int!
+  KickingPower: Int!
+  Jump: Int!
+  PhysicalContact: Int!
+  Balance: Int!
+  Stamina: Int!
+  DefensiveAwareness: Int!
+  BallWinning: Int!
+  DefensiveEngagement: Int!
+  Aggression: Int!
+  GKAwareness: Int!
+  GKCatching: Int!
+  GKClearing: Int!
+  GKReflexes: Int!
+  GKReach: Int!
+  WeakFootUsage: Int!
+  WeakFootAccuracy: Int!
+  Form: Int!
+  InjuryResistance: Int!
+  Reputation: Int!
+  PlayingAttitude: Int!
+  Trickster: Int!
+  MazingRun: Int!
+  SpeedingBullet: Int!
+  IncisiveRun: Int!
+  LongBallExpert: Int!
+  EarlyCross: Int!
+  LongRange: Int!
+  ScissorsFeint: Int!
+  DoubleTouch: Int!
+  FlipFlap: Int!
+  MarseilleTurn: Int!
+  Sombrero: Int!
+  CrossOverTurn: Int!
+  CutBehindTurn: Int!
+  ScotchMove: Int!
+  StepOnSkillControl: Int!
+  sHeading: Int!
+  LongRangeDrive: Int!
+  ChipShotControl: Int!
+  LongRangeShooting: Int!
+  KnuckleShot: Int!
+  DippingShot: Int!
+  RisingShots: Int!
+  AcrobaticFinishing: Int!
+  HellTrick: Int!
+  FirstTimeShot: Int!
+  OneTouchPass: Int!
+  ThroughPassing: Int!
+  WeightedPass: Int!
+  PinpointCrossing: Int!
+  OutsideCurler: Int!
+  Rabona: Int!
+  NoLookPass: Int!
+  LowLoftedPass: Int!
+  GKLowPunt: Int!
+  GKHighPunt: Int!
+  LongThrow: Int!
+  GKLongThrow: Int!
+  PenaltySpecialist: Int!
+  GKPenaltySaver: Int!
+  Gamesmanship: Int!
+  ManMarking: Int!
+  TrackBack: Int!
+  Interception: Int!
+  AcrobaticClear: Int!
+  Captaincy: Int!
+  SuperSub: Int!
+  FightingSpirit: Int!
+  Blocker: Int!
+  AerialSuperiority: Int!
+  SlidingTackle: Int!
+  GoalCelebration: Int!
+  HiddenPlayer: Int!
+  DribblingHunching: Int!
+  DribblingArmMovement: Int!
+  RunningHunching: Int!
+  RunningArmMovement: Int!
+  CornerKick: Int!
+  FreeKick: Int!
+  PenaltyKick: Int!
+  DribbleMotion: Int!
+  YouthClubID: Int!
+  OwnerClub: Int!
+  ContractExpiryDate: String!
+  LoanExpiryDate: String!
+  MarketValue: Int!
+  NationalTeamCaps: Int!
+  WinnerofGoldenBall: Int!
+  Condition: Int!
+  MAXOffensiveAwareness: Int!
+  MAXBallControl: Int!
+  MAXDribbling: Int!
+  MAXTightPossession: Int!
+  MAXLowPass: Int!
+  MAXLoftedPass: Int!
+  MAXFinishing: Int!
+  MAXPlaceKicking: Int!
+  MAXCurl: Int!
+  MAXHeading: Int!
+  MAXDefensiveAwareness: Int!
+  MAXDefensiveEngagement: Int!
+  MAXBallWinning: Int!
+  MAXAggression: Int!
+  MAXKickingPower: Int!
+  MAXSpeed: Int!
+  MAXAcceleration: Int!
+  MAXBalance: Int!
+  MAXPhysicalContact: Int!
+  MAXJump: Int!
+  MAXGKAwareness: Int!
+  MAXGKCatching: Int!
+  MAXGKClearing: Int!
+  MAXGKReflexes: Int!
+  MAXGKReach: Int!
+  MAXStamina: Int!
+  Overall: Int!
+  LevelCap: Int!
+  OverallPotential: Int!
+  BaseContractCost: Int!
+  MaxContractCost: Int!
+  DataPackOneChange: String!
+  DataPackTwoChange: String!
+  Club: Int!
+  TeamName: String!
+  Continent: Int!
+  LeagueID: Int!
+  LeagueName: String!
+  PlayerType: Int!
+  overallGK: Int!
+  overallCB: Int!
+  overallLB: Int!
+  overallRB: Int!
+  overallDMF: Int!
+  overallCMF: Int!
+  overallLMF: Int!
+  overallRMF: Int!
+  overallAMF: Int!
+  overallLWF: Int!
+  overallRWF: Int!
+  overallSS: Int!
+  overallCF: Int!
+  MAXOverallGK: Int!
+  MAXOverallCB: Int!
+  MAXOverallLB: Int!
+  MAXOverallRB: Int!
+  MAXOverallDMF: Int!
+  MAXOverallCMF: Int!
+  MAXOverallLMF: Int!
+  MAXOverallRMF: Int!
+  MAXOverallAMF: Int!
+  MAXOverallLWF: Int!
+  MAXOverallRWF: Int!
+  MAXOverallSS: Int!
+  MAXOverallCF: Int!
+  New: Int!
+  Nation: String!
+  Position: String!
+}
+
+type LegacyPlayer {
+  PlayerID: ID!
+  Image: String!
+  Name: String!
+  Nationality: String!
+  Positions: String!
+  RegistredPosition: String!
+  Age: Int!
+  Height: String!
+  Weight: Int!
+  InjuryTolerance: String!
+  Foot: String!
+  FootSide: String!
+  Attack: Int!
+  Defence: Int!
+  Balance: Int!
+  Stamina: Int!
+  Speed: Int!
+  Acceleration: Int!
+  Response: Int!
+  Agility: Int!
+  DribbleAccuracy: Int!
+  DribbleSpeed: Int!
+  ShortPassAccuracy: Int!
+  ShortPassSpeed: Int!
+  LongPassAccuracy: Int!
+  LongPassSpeed: Int!
+  ShotAccuracy: Int!
+  ShotPower: Int!
+  ShotTechnique: Int!
+  FreeKickAccuracy: Int!
+  Swerve: Int!
+  Heading: Int!
+  Jump: Int!
+  Technique: Int!
+  Aggression: Int!
+  Mentality: Int!
+  GKSkills: Int!
+  TeamWork: Int!
+  Consistency: Int!
+  ConditionFitness: Int!
+  WeakFootAccuracy: Int!
+  WeakFootFrequency: Int!
+  FreeKickStyle: Int!
+  DropKickStyle: Int!
+  DribblingStyle: Int!
+  PenaltyStyle: Int!
+  SpecialAbilities: String!
+}

@@ -1,0 +1,11 @@
+schema: https://efootball22.herokuapp.com/graphql
+documents:
+  - src/operation.graphql
+generates:
+  ./src/graphql.ts:
+    config:
+      withHooks: true
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-urql
