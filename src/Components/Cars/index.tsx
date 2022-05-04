@@ -59,18 +59,20 @@ const Cars: React.FC = (props) => {
       <header className="p-4 pb-0 border-b shadow-lg bg-gray-100 md:flex md:items-center md:justify-between md:pb-4">
         <div className="mb-4 flex items-center justify-between md:mb-0">
           <h1 className="leading-none text-2xl text-gray-darkest">
-            <a
-              className="text-2xl font-extrabold tracking-tight text-gray-900"
-            >
-               Efootball22 Players Stats Convert
-            </a>
+            <Link href={`/`} passHref={true}>
+              <a className="text-2xl font-extrabold tracking-tight text-gray-900">
+                Efootball22 Players Stats Convert
+              </a>
+            </Link>
           </h1>
         </div>
         <nav>
           <ul className="list-reset md:flex md:items-center">
             <li className="md:ml-4">
               <a
-                href="https://github.com/fvitor7" target="_blank"  rel="noreferrer"
+                href="https://github.com/fvitor7"
+                target="_blank"
+                rel="noreferrer"
                 className="block py-2 text-grey-darkest no-underline md:border-none md:p-0 hover:underline"
               >
                 Developed by Fábio Vitor
@@ -80,9 +82,11 @@ const Cars: React.FC = (props) => {
         </nav>
       </header>
       <div className="max-w-2xl mx-auto py-8 px-4  sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-          Beta Version
-        </h2>
+        <Link href={`/`} passHref={true}>
+          <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
+            Beta Version
+          </h2>
+        </Link>
 
         <div className="flex flex-col md:flex-row mt-10  md:w-full max-w-xl md:space-x-3 space-y-3 md:space-y-0 justify-center">
           <div className=" relative ">
