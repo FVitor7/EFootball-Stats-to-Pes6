@@ -16,7 +16,17 @@ const Player: React.FC = (props) => {
 
   const [{ data, fetching }] = useLegacyPlayerStatsQuery(context);
 
-  if (fetching) return <div>Loading</div>;
+  if (fetching)
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-white">
+        <div className="loader bg-black p-5 rounded-full flex space-x-3">
+          <div className="w-5 h-5 bg-gray-300 rounded-full animate-bounce"></div>
+          <div className="w-5 h-5 bg-gray-300 rounded-full animate-bounce"></div>
+          <div className="w-5 h-5 bg-gray-300 rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    );
+
   if (data?.legacyPlayerStats.length === 0) return <div>No Players yet</div>;
 
   function calculateStatForHexagon(stat: number) {

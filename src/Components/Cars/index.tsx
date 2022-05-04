@@ -5,13 +5,34 @@ import Image from "next/image";
 import { ImageError } from "next/dist/server/image-optimizer";
 import Link from "next/link";
 const Cars: React.FC = (props) => {
+  const [playerName, setPlayerName] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [nationName, setNationName] = useState("");
+
+  const [searchPlayer, setSearchPlayer] = useState(false);
+
   const context = useMemo(
-    () => ({ variables: { TeamName: "", PlayerName: "" } }),
-    []
+    () => ({
+      variables: {
+        TeamName: teamName,
+        PlayerName: playerName,
+        NationName: nationName,
+      },
+    }),
+    [searchPlayer] // eslint-disable-line react-hooks/exhaustive-deps
   );
   const [{ data, fetching }] = useSearchPlayerQuery(context);
-  if (fetching) return <div>Loading</div>;
-  if (data?.searchPlayer.length === 0) return <div>No Players yet</div>;
+
+  if (fetching)
+    return (
+      <div className="min-h-screen flex justify-center items-center bg-white">
+        <div className="loader bg-black p-5 rounded-full flex space-x-3">
+          <div className="w-5 h-5 bg-gray-300 rounded-full animate-bounce"></div>
+          <div className="w-5 h-5 bg-gray-300 rounded-full animate-bounce"></div>
+          <div className="w-5 h-5 bg-gray-300 rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    );
 
   const shimmer = (w: number, h: number) => `
     <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -37,12 +58,55 @@ const Cars: React.FC = (props) => {
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <h2 className="text-2xl font-extrabold tracking-tight text-gray-900">
-          Efootball Players
+          Efootball22 Players Stats Convert
         </h2>
+
+        <div className="flex flex-col md:flex-row mt-10  md:w-full max-w-xl md:space-x-3 space-y-3 md:space-y-0 justify-center">
+          <div className=" relative ">
+            <input
+              type="text"
+              id='"form-subscribe-Subscribe'
+              className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              placeholder="PLayer Name"
+              onChange={(e) => setPlayerName(e.target.value)}
+            />
+          </div>
+          <div className=" relative ">
+            <input
+              type="text"
+              id='"form-subscribe-Subscribe'
+              className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              placeholder="Team Name"
+              onChange={(e) => setTeamName(e.target.value)}
+            />
+          </div>
+          <div className=" relative ">
+            <input
+              type="text"
+              id='"form-subscribe-Subscribe'
+              className=" rounded-lg border-transparent flex-1 appearance-none border border-gray-400 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              placeholder="Nation Name"
+              onChange={(e) => setNationName(e.target.value)}
+            />
+          </div>
+          <button
+            className="flex-shrink-0 px-4 py-2 text-base font-semibold text-white bg-purple-600 rounded-lg shadow-md hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-purple-200"
+            type="submit"
+            onClick={() => {
+              setSearchPlayer(!searchPlayer);
+            }}
+          >
+            Search Player
+          </button>
+        </div>
 
         <div className="mt-6 grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-4 xl:gap-x-8">
           {data?.searchPlayer.map((player, key) => (
-            <Link href={`/player/${encodeURIComponent(player.PlayerID)}`} passHref={true} key={player.PlayerID}>
+            <Link
+              href={`/player/${encodeURIComponent(player.PlayerID)}`}
+              passHref={true}
+              key={player.PlayerID}
+            >
               <div className="group relative">
                 <div className="w-full min-h-80 bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
                   <Image
